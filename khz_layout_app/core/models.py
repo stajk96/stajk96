@@ -72,8 +72,6 @@ class BaselineOperationalInputs(BaseModel):
     fast_pick_sku_count: int = 1200
 
 
-
-
 class StorageZone(BaseModel):
     zone_id: str = "Z1"
     temperature_class: str = "dry"
@@ -94,6 +92,44 @@ class FlowConstraint(BaseModel):
 class LeverImpactProfile(BaseModel):
     direct: dict[str, float] = Field(default_factory=dict)
     secondary: dict[str, float] = Field(default_factory=dict)
+
+
+class LeverParameterDef(BaseModel):
+    name: str
+    label: str
+    input_type: str
+    min: float | None = None
+    max: float | None = None
+    step: float | None = None
+    default: Any
+    options: list[Any] = Field(default_factory=list)
+    unit: str = ""
+    description: str = ""
+
+
+class EnhancedLayoutLever(BaseModel):
+    lever_id: str
+    name: str
+    category: str
+    subcategory: str
+    description: str
+    business_question: str
+    operational_mechanism: str
+    input_parameters: list[LeverParameterDef]
+    primary_impacts: dict[str, float]
+    secondary_impacts: dict[str, float]
+    dependencies: dict[str, Any] = Field(default_factory=dict)
+    conflicts: dict[str, Any] = Field(default_factory=dict)
+    implementation_effort: str
+    confidence_level: str
+    risk_level: str
+    explanation_template: str
+    recommendation_template: str
+    affected_intermediate_variables: list[str] = Field(default_factory=list)
+    affected_kpis: list[str] = Field(default_factory=list)
+    watchouts: list[str] = Field(default_factory=list)
+    typical_use_cases: list[str] = Field(default_factory=list)
+    avoid_when: list[str] = Field(default_factory=list)
 
 
 class LayoutLever(BaseModel):
@@ -140,7 +176,7 @@ class Scenario(BaseModel):
     site: SiteProfile
     geometry: LayoutGeometry
     operational: BaselineOperationalInputs
-    lever_values: dict[str, float] = Field(default_factory=dict)
+    lever_values: dict[str, Any] = Field(default_factory=dict)
 
 
 class ScenarioResult(BaseModel):

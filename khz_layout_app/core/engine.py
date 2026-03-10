@@ -1,10 +1,9 @@
 from __future__ import annotations
 
-import json
-
 from core.dependencies import dependency_penalties
 from core.formulas import clamp, indexed_kpi, sat_gain, sat_penalty
-from core.models import BottleneckState, IntermediateState, KPIState, Scenario, ScenarioResult
+from core.lever_catalog import lever_default_inputs, lever_intensity
+from core.models import BottleneckState, EnhancedLayoutLever, IntermediateState, KPIState, Scenario, ScenarioResult
 from core.scoring import overall_score
 
 
@@ -31,25 +30,40 @@ BASE_INTERMEDIATE = {
 }
 
 
-def simulate(scenario: Scenario, lever_catalog: list[dict]) -> ScenarioResult:
+def _get_lever_values(scenario: Scenario, lever: EnhancedLayoutLever) -> dict:
+    given = scenario.lever_values.get(lever.lever_id)
+    if not isinstance(given, dict):
+        return lever_default_inputs(lever)
+    merged = lever_default_inputs(lever)
+    merged.update(given)
+    return merged
+
+
+def simulate(scenario: Scenario, lever_catalog: list[EnhancedLayoutLever]) -> ScenarioResult:
     inter = BASE_INTERMEDIATE.copy()
     drivers: dict[str, float] = {}
-    for lever in lever_catalog:
-        lever_id = lever["lever_id"]
-        raw = scenario.lever_values.get(lever_id, float(lever["default"]))
-        norm = 0 if float(lever["max"]) == float(lever["min"]) else (raw - float(lever["min"])) / (float(lever["max"]) - float(lever["min"]))
-        impact = sat_gain(norm) * float(lever["weight"])
-        for k, v in json.loads(lever["direct_impacts_json"]).items():
-            inter[k] = clamp(inter.get(k, 1.0) + impact * float(v), 0.5, 1.6)
-        for k, v in json.loads(lever["secondary_impacts_json"]).items():
-            inter[k] = clamp(inter.get(k, 1.0) + sat_penalty(norm) * float(v) * 0.5, 0.5, 1.6)
-        drivers[lever_id] = round(impact, 4)
+    normalized_lever_values: dict[str, dict] = {}
 
-    penalties = dependency_penalties(scenario.lever_values)
+    for lever in lever_catalog:
+        values = _get_lever_values(scenario, lever)
+        normalized_lever_values[lever.lever_id] = values
+        intensity = lever_intensity(lever, values)
+        gain = sat_gain(intensity)
+        drag = sat_penalty(intensity)
+
+        for k, v in lever.primary_impacts.items():
+            inter[k] = clamp(inter.get(k, 1.0) + gain * float(v), 0.5, 1.7)
+        for k, v in lever.secondary_impacts.items():
+            inter[k] = clamp(inter.get(k, 1.0) + drag * float(v), 0.5, 1.7)
+
+        drivers[lever.name] = round(gain * sum(abs(float(x)) for x in lever.primary_impacts.values()), 4)
+
+    penalties = dependency_penalties(normalized_lever_values)
     inter["travel_time_index"] = clamp(inter["travel_time_index"] + penalties["travel"], 0.5, 1.7)
     inter["congestion_index"] = clamp(inter["congestion_index"] + penalties["congestion"], 0.5, 1.7)
     inter["replenishment_interference_index"] = clamp(inter["replenishment_interference_index"] + penalties["replenishment"], 0.5, 1.7)
     inter["usable_space_index"] = clamp(inter["usable_space_index"] - penalties["space"], 0.5, 1.7)
+    inter["route_complexity_index"] = clamp(inter["route_complexity_index"] + penalties["route_complexity"], 0.5, 1.7)
 
     b = {
         "Travel & Accessibility": (inter["travel_distance_index"] + inter["accessibility_index"] + inter["route_complexity_index"]) / 3,

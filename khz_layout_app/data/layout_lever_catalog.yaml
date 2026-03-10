@@ -1,0 +1,4222 @@
+{
+  "levers": [
+    {
+      "lever_id": "add_cross_aisle",
+      "name": "Add cross-aisle in case-pick zone",
+      "category": "Aisle / geometry",
+      "subcategory": "case_pick",
+      "description": "Operational layout intervention: add cross-aisle in case-pick zone.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "count_added",
+          "label": "Count added",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 12,
+          "step": 1,
+          "default": 0,
+          "options": [],
+          "unit": "count",
+          "description": "Exact quantity to implement."
+        },
+        {
+          "name": "affected_zone",
+          "label": "Affected zone",
+          "input_type": "selectbox",
+          "default": "case_pick",
+          "options": [
+            "case_pick",
+            "full_pallet",
+            "dispatch_near",
+            "mixed"
+          ],
+          "unit": "",
+          "description": "Main layout zone affected."
+        },
+        {
+          "name": "placement_quality",
+          "label": "Placement quality",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.5,
+          "options": [],
+          "unit": "score",
+          "description": "How well this move is positioned in practice."
+        }
+      ],
+      "primary_impacts": {
+        "travel_distance_index": -0.12,
+        "accessibility_index": 0.09,
+        "route_complexity_index": -0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04,
+        "congestion_index": 0.02
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "travel_distance_index",
+        "accessibility_index",
+        "route_complexity_index",
+        "usable_space_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "improve_cross_aisle_placement",
+      "name": "Improve cross-aisle placement quality",
+      "category": "Aisle / geometry",
+      "subcategory": "travel",
+      "description": "Operational layout intervention: improve cross-aisle placement quality.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "travel_distance_index": -0.12,
+        "accessibility_index": 0.09,
+        "route_complexity_index": -0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04,
+        "congestion_index": 0.02
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "travel_distance_index",
+        "accessibility_index",
+        "route_complexity_index",
+        "usable_space_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "reduce_dead_end_travel",
+      "name": "Reduce dead-end travel exposure",
+      "category": "Aisle / geometry",
+      "subcategory": "travel",
+      "description": "Operational layout intervention: reduce dead-end travel exposure.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "travel_distance_index": -0.12,
+        "accessibility_index": 0.09,
+        "route_complexity_index": -0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04,
+        "congestion_index": 0.02
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "travel_distance_index",
+        "accessibility_index",
+        "route_complexity_index",
+        "usable_space_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "create_cut_through_access",
+      "name": "Create cut-through access between row clusters",
+      "category": "Aisle / geometry",
+      "subcategory": "travel",
+      "description": "Operational layout intervention: create cut-through access between row clusters.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "count_added",
+          "label": "Count added",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 12,
+          "step": 1,
+          "default": 0,
+          "options": [],
+          "unit": "count",
+          "description": "Exact quantity to implement."
+        },
+        {
+          "name": "affected_zone",
+          "label": "Affected zone",
+          "input_type": "selectbox",
+          "default": "case_pick",
+          "options": [
+            "case_pick",
+            "full_pallet",
+            "dispatch_near",
+            "mixed"
+          ],
+          "unit": "",
+          "description": "Main layout zone affected."
+        },
+        {
+          "name": "placement_quality",
+          "label": "Placement quality",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.5,
+          "options": [],
+          "unit": "score",
+          "description": "How well this move is positioned in practice."
+        }
+      ],
+      "primary_impacts": {
+        "travel_distance_index": -0.12,
+        "accessibility_index": 0.09,
+        "route_complexity_index": -0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04,
+        "congestion_index": 0.02
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "travel_distance_index",
+        "accessibility_index",
+        "route_complexity_index",
+        "usable_space_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "convert_to_one_way_aisle_flow",
+      "name": "Convert aisle cluster to one-way directional flow",
+      "category": "Aisle / geometry",
+      "subcategory": "flow",
+      "description": "Operational layout intervention: convert aisle cluster to one-way directional flow.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "enabled",
+          "label": "Enable one-way flow",
+          "input_type": "toggle",
+          "default": false,
+          "options": [],
+          "unit": "",
+          "description": "Apply one-way rules in selected cluster."
+        },
+        {
+          "name": "coverage_share",
+          "label": "Coverage share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Share of aisles under one-way rules."
+        }
+      ],
+      "primary_impacts": {
+        "travel_distance_index": -0.12,
+        "accessibility_index": 0.09,
+        "route_complexity_index": -0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04,
+        "congestion_index": 0.02
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "travel_distance_index",
+        "accessibility_index",
+        "route_complexity_index",
+        "usable_space_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "rebalance_aisle_widths",
+      "name": "Rebalance aisle widths by zone usage",
+      "category": "Aisle / geometry",
+      "subcategory": "capacity",
+      "description": "Operational layout intervention: rebalance aisle widths by zone usage.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "travel_distance_index": -0.12,
+        "accessibility_index": 0.09,
+        "route_complexity_index": -0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04,
+        "congestion_index": 0.02
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "travel_distance_index",
+        "accessibility_index",
+        "route_complexity_index",
+        "usable_space_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "reorient_row_cluster_flow",
+      "name": "Reorient row cluster circulation",
+      "category": "Aisle / geometry",
+      "subcategory": "flow",
+      "description": "Operational layout intervention: reorient row cluster circulation.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "travel_distance_index": -0.12,
+        "accessibility_index": 0.09,
+        "route_complexity_index": -0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04,
+        "congestion_index": 0.02
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "travel_distance_index",
+        "accessibility_index",
+        "route_complexity_index",
+        "usable_space_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "reduce_pinch_point_density",
+      "name": "Reduce pinch-point density",
+      "category": "Aisle / geometry",
+      "subcategory": "safety",
+      "description": "Operational layout intervention: reduce pinch-point density.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "travel_distance_index": -0.12,
+        "accessibility_index": 0.09,
+        "route_complexity_index": -0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04,
+        "congestion_index": 0.02
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "travel_distance_index",
+        "accessibility_index",
+        "route_complexity_index",
+        "usable_space_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "adjust_reserve_vs_pick_footprint",
+      "name": "Adjust reserve vs pick footprint",
+      "category": "Aisle / geometry",
+      "subcategory": "space",
+      "description": "Operational layout intervention: adjust reserve vs pick footprint.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "travel_distance_index": -0.12,
+        "accessibility_index": 0.09,
+        "route_complexity_index": -0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04,
+        "congestion_index": 0.02
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "travel_distance_index",
+        "accessibility_index",
+        "route_complexity_index",
+        "usable_space_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "widen_hot_zone_aisles",
+      "name": "Widen hot-zone aisles",
+      "category": "Aisle / geometry",
+      "subcategory": "safety",
+      "description": "Operational layout intervention: widen hot-zone aisles.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "travel_distance_index": -0.12,
+        "accessibility_index": 0.09,
+        "route_complexity_index": -0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04,
+        "congestion_index": 0.02
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "travel_distance_index",
+        "accessibility_index",
+        "route_complexity_index",
+        "usable_space_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "reslot_top_20_fast_movers",
+      "name": "Re-slot top 20 fast movers",
+      "category": "Slotting / SKU location",
+      "subcategory": "slotting",
+      "description": "Operational layout intervention: re-slot top 20 fast movers.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "sku_count_relocated",
+          "label": "SKU count relocated",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "default": 0,
+          "options": [],
+          "unit": "sku",
+          "description": "Exact number of fast movers re-slotted."
+        },
+        {
+          "name": "average_distance_reduction_m",
+          "label": "Average distance reduction (m)",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 60,
+          "step": 1,
+          "default": 0,
+          "options": [],
+          "unit": "m",
+          "description": "Mean travel distance reduction."
+        }
+      ],
+      "primary_impacts": {
+        "slotting_quality_index": 0.14,
+        "pick_density_index": 0.09,
+        "travel_distance_index": -0.1
+      },
+      "secondary_impacts": {
+        "hotspot_concentration_index": 0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "slotting_quality_index",
+        "pick_density_index",
+        "travel_distance_index",
+        "hotspot_concentration_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "reslot_top_50_fast_movers",
+      "name": "Re-slot top 50 fast movers",
+      "category": "Slotting / SKU location",
+      "subcategory": "slotting",
+      "description": "Operational layout intervention: re-slot top 50 fast movers.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "sku_count_relocated",
+          "label": "SKU count relocated",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "default": 0,
+          "options": [],
+          "unit": "sku",
+          "description": "Exact number of fast movers re-slotted."
+        },
+        {
+          "name": "average_distance_reduction_m",
+          "label": "Average distance reduction (m)",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 80,
+          "step": 1,
+          "default": 0,
+          "options": [],
+          "unit": "m",
+          "description": "Mean travel distance reduction per relocated SKU."
+        },
+        {
+          "name": "target_zone",
+          "label": "Target zone",
+          "input_type": "selectbox",
+          "default": "dispatch_near",
+          "options": [
+            "dispatch_near",
+            "center",
+            "mixed"
+          ],
+          "unit": "",
+          "description": "Relocation target."
+        }
+      ],
+      "primary_impacts": {
+        "slotting_quality_index": 0.14,
+        "pick_density_index": 0.09,
+        "travel_distance_index": -0.1
+      },
+      "secondary_impacts": {
+        "hotspot_concentration_index": 0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "slotting_quality_index",
+        "pick_density_index",
+        "travel_distance_index",
+        "hotspot_concentration_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "improve_abc_slotting_compliance",
+      "name": "Improve ABC slotting compliance",
+      "category": "Slotting / SKU location",
+      "subcategory": "slotting",
+      "description": "Operational layout intervention: improve abc slotting compliance.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "slotting_quality_index": 0.14,
+        "pick_density_index": 0.09,
+        "travel_distance_index": -0.1
+      },
+      "secondary_impacts": {
+        "hotspot_concentration_index": 0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "slotting_quality_index",
+        "pick_density_index",
+        "travel_distance_index",
+        "hotspot_concentration_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "improve_family_grouping",
+      "name": "Improve family grouping for velocity categories",
+      "category": "Slotting / SKU location",
+      "subcategory": "slotting",
+      "description": "Operational layout intervention: improve family grouping for velocity categories.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "slotting_quality_index": 0.14,
+        "pick_density_index": 0.09,
+        "travel_distance_index": -0.1
+      },
+      "secondary_impacts": {
+        "hotspot_concentration_index": 0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "slotting_quality_index",
+        "pick_density_index",
+        "travel_distance_index",
+        "hotspot_concentration_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "improve_affinity_slotting",
+      "name": "Improve order-affinity slotting",
+      "category": "Slotting / SKU location",
+      "subcategory": "slotting",
+      "description": "Operational layout intervention: improve order-affinity slotting.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "slotting_quality_index": 0.14,
+        "pick_density_index": 0.09,
+        "travel_distance_index": -0.1
+      },
+      "secondary_impacts": {
+        "hotspot_concentration_index": 0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "slotting_quality_index",
+        "pick_density_index",
+        "travel_distance_index",
+        "hotspot_concentration_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "reduce_fragmented_pick_faces",
+      "name": "Reduce fragmented pick faces for high runners",
+      "category": "Slotting / SKU location",
+      "subcategory": "slotting",
+      "description": "Operational layout intervention: reduce fragmented pick faces for high runners.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "slotting_quality_index": 0.14,
+        "pick_density_index": 0.09,
+        "travel_distance_index": -0.1
+      },
+      "secondary_impacts": {
+        "hotspot_concentration_index": 0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "slotting_quality_index",
+        "pick_density_index",
+        "travel_distance_index",
+        "hotspot_concentration_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "move_heavy_items_better_positions",
+      "name": "Move heavy items to better pick positions",
+      "category": "Slotting / SKU location",
+      "subcategory": "ergonomic",
+      "description": "Operational layout intervention: move heavy items to better pick positions.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "slotting_quality_index": 0.14,
+        "pick_density_index": 0.09,
+        "travel_distance_index": -0.1
+      },
+      "secondary_impacts": {
+        "hotspot_concentration_index": 0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "slotting_quality_index",
+        "pick_density_index",
+        "travel_distance_index",
+        "hotspot_concentration_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "improve_golden_zone_compliance",
+      "name": "Improve golden zone compliance",
+      "category": "Slotting / SKU location",
+      "subcategory": "ergonomic",
+      "description": "Operational layout intervention: improve golden zone compliance.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "slotting_quality_index": 0.14,
+        "pick_density_index": 0.09,
+        "travel_distance_index": -0.1
+      },
+      "secondary_impacts": {
+        "hotspot_concentration_index": 0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "slotting_quality_index",
+        "pick_density_index",
+        "travel_distance_index",
+        "hotspot_concentration_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "move_fast_movers_closer_dispatch",
+      "name": "Move fast movers closer to dispatch",
+      "category": "Slotting / SKU location",
+      "subcategory": "travel",
+      "description": "Operational layout intervention: move fast movers closer to dispatch.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "slotting_quality_index": 0.14,
+        "pick_density_index": 0.09,
+        "travel_distance_index": -0.1
+      },
+      "secondary_impacts": {
+        "hotspot_concentration_index": 0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "slotting_quality_index",
+        "pick_density_index",
+        "travel_distance_index",
+        "hotspot_concentration_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "isolate_promo_seasonal_skus",
+      "name": "Isolate promo and seasonal SKUs",
+      "category": "Slotting / SKU location",
+      "subcategory": "seasonal",
+      "description": "Operational layout intervention: isolate promo and seasonal skus.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "slotting_quality_index": 0.14,
+        "pick_density_index": 0.09,
+        "travel_distance_index": -0.1
+      },
+      "secondary_impacts": {
+        "hotspot_concentration_index": 0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "slotting_quality_index",
+        "pick_density_index",
+        "travel_distance_index",
+        "hotspot_concentration_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "push_low_runners_to_reserve",
+      "name": "Push low runners to reserve area",
+      "category": "Slotting / SKU location",
+      "subcategory": "space",
+      "description": "Operational layout intervention: push low runners to reserve area.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "slotting_quality_index": 0.14,
+        "pick_density_index": 0.09,
+        "travel_distance_index": -0.1
+      },
+      "secondary_impacts": {
+        "hotspot_concentration_index": 0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "slotting_quality_index",
+        "pick_density_index",
+        "travel_distance_index",
+        "hotspot_concentration_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "cluster_top_categories_by_affinity",
+      "name": "Cluster top categories by affinity",
+      "category": "Slotting / SKU location",
+      "subcategory": "slotting",
+      "description": "Operational layout intervention: cluster top categories by affinity.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "slotting_quality_index": 0.14,
+        "pick_density_index": 0.09,
+        "travel_distance_index": -0.1
+      },
+      "secondary_impacts": {
+        "hotspot_concentration_index": 0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "slotting_quality_index",
+        "pick_density_index",
+        "travel_distance_index",
+        "hotspot_concentration_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "create_forward_pick_zone",
+      "name": "Create forward pick zone for top SKUs",
+      "category": "Forward-pick / fast-pick",
+      "subcategory": "forward_pick",
+      "description": "Operational layout intervention: create forward pick zone for top skus.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "sku_share_moved_to_forward_pick",
+          "label": "SKU share moved to forward-pick",
+          "input_type": "slider",
+          "min": 0,
+          "max": 0.6,
+          "step": 0.02,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Share of SKUs moved."
+        },
+        {
+          "name": "forward_pick_slots_added",
+          "label": "Forward-pick slots added",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 500,
+          "step": 10,
+          "default": 0,
+          "options": [],
+          "unit": "slots",
+          "description": "Net forward-pick positions."
+        },
+        {
+          "name": "replenishment_policy",
+          "label": "Replenishment policy",
+          "input_type": "selectbox",
+          "default": "standard",
+          "options": [
+            "standard",
+            "windowed",
+            "dedicated_path"
+          ],
+          "unit": "",
+          "description": "Replenishment operating policy."
+        },
+        {
+          "name": "isolation_enabled",
+          "label": "Enable replenishment isolation",
+          "input_type": "toggle",
+          "default": false,
+          "options": [],
+          "unit": "",
+          "description": "Separate replenishment and picking routes."
+        }
+      ],
+      "primary_impacts": {
+        "forward_pick_effectiveness_index": 0.18,
+        "travel_distance_index": -0.11
+      },
+      "secondary_impacts": {
+        "replenishment_interference_index": 0.1,
+        "congestion_index": 0.05
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "forward_pick_effectiveness_index",
+        "travel_distance_index",
+        "replenishment_interference_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "expand_forward_pick_zone",
+      "name": "Expand forward-pick zone coverage",
+      "category": "Forward-pick / fast-pick",
+      "subcategory": "forward_pick",
+      "description": "Operational layout intervention: expand forward-pick zone coverage.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "sku_share_moved_to_forward_pick",
+          "label": "SKU share moved to forward-pick",
+          "input_type": "slider",
+          "min": 0,
+          "max": 0.6,
+          "step": 0.02,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Share of SKUs moved."
+        },
+        {
+          "name": "forward_pick_slots_added",
+          "label": "Forward-pick slots added",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 500,
+          "step": 10,
+          "default": 0,
+          "options": [],
+          "unit": "slots",
+          "description": "Net forward-pick positions."
+        },
+        {
+          "name": "replenishment_policy",
+          "label": "Replenishment policy",
+          "input_type": "selectbox",
+          "default": "standard",
+          "options": [
+            "standard",
+            "windowed",
+            "dedicated_path"
+          ],
+          "unit": "",
+          "description": "Replenishment operating policy."
+        },
+        {
+          "name": "isolation_enabled",
+          "label": "Enable replenishment isolation",
+          "input_type": "toggle",
+          "default": false,
+          "options": [],
+          "unit": "",
+          "description": "Separate replenishment and picking routes."
+        }
+      ],
+      "primary_impacts": {
+        "forward_pick_effectiveness_index": 0.18,
+        "travel_distance_index": -0.11
+      },
+      "secondary_impacts": {
+        "replenishment_interference_index": 0.1,
+        "congestion_index": 0.05
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "forward_pick_effectiveness_index",
+        "travel_distance_index",
+        "replenishment_interference_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "reduce_forward_pick_zone",
+      "name": "Reduce forward-pick footprint",
+      "category": "Forward-pick / fast-pick",
+      "subcategory": "forward_pick",
+      "description": "Operational layout intervention: reduce forward-pick footprint.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "sku_share_moved_to_forward_pick",
+          "label": "SKU share moved to forward-pick",
+          "input_type": "slider",
+          "min": 0,
+          "max": 0.6,
+          "step": 0.02,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Share of SKUs moved."
+        },
+        {
+          "name": "forward_pick_slots_added",
+          "label": "Forward-pick slots added",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 500,
+          "step": 10,
+          "default": 0,
+          "options": [],
+          "unit": "slots",
+          "description": "Net forward-pick positions."
+        },
+        {
+          "name": "replenishment_policy",
+          "label": "Replenishment policy",
+          "input_type": "selectbox",
+          "default": "standard",
+          "options": [
+            "standard",
+            "windowed",
+            "dedicated_path"
+          ],
+          "unit": "",
+          "description": "Replenishment operating policy."
+        },
+        {
+          "name": "isolation_enabled",
+          "label": "Enable replenishment isolation",
+          "input_type": "toggle",
+          "default": false,
+          "options": [],
+          "unit": "",
+          "description": "Separate replenishment and picking routes."
+        }
+      ],
+      "primary_impacts": {
+        "forward_pick_effectiveness_index": 0.18,
+        "travel_distance_index": -0.11
+      },
+      "secondary_impacts": {
+        "replenishment_interference_index": 0.1,
+        "congestion_index": 0.05
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "forward_pick_effectiveness_index",
+        "travel_distance_index",
+        "replenishment_interference_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "dedicate_forward_pick_to_a_items",
+      "name": "Dedicate forward pick to A-items",
+      "category": "Forward-pick / fast-pick",
+      "subcategory": "forward_pick",
+      "description": "Operational layout intervention: dedicate forward pick to a-items.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "sku_share_moved_to_forward_pick",
+          "label": "SKU share moved to forward-pick",
+          "input_type": "slider",
+          "min": 0,
+          "max": 0.6,
+          "step": 0.02,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Share of SKUs moved."
+        },
+        {
+          "name": "forward_pick_slots_added",
+          "label": "Forward-pick slots added",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 500,
+          "step": 10,
+          "default": 0,
+          "options": [],
+          "unit": "slots",
+          "description": "Net forward-pick positions."
+        },
+        {
+          "name": "replenishment_policy",
+          "label": "Replenishment policy",
+          "input_type": "selectbox",
+          "default": "standard",
+          "options": [
+            "standard",
+            "windowed",
+            "dedicated_path"
+          ],
+          "unit": "",
+          "description": "Replenishment operating policy."
+        },
+        {
+          "name": "isolation_enabled",
+          "label": "Enable replenishment isolation",
+          "input_type": "toggle",
+          "default": false,
+          "options": [],
+          "unit": "",
+          "description": "Separate replenishment and picking routes."
+        }
+      ],
+      "primary_impacts": {
+        "forward_pick_effectiveness_index": 0.18,
+        "travel_distance_index": -0.11
+      },
+      "secondary_impacts": {
+        "replenishment_interference_index": 0.1,
+        "congestion_index": 0.05
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "forward_pick_effectiveness_index",
+        "travel_distance_index",
+        "replenishment_interference_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "improve_forward_pick_replenishment_isolation",
+      "name": "Improve FP replenishment isolation",
+      "category": "Forward-pick / fast-pick",
+      "subcategory": "forward_pick",
+      "description": "Operational layout intervention: improve fp replenishment isolation.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "sku_share_moved_to_forward_pick",
+          "label": "SKU share moved to forward-pick",
+          "input_type": "slider",
+          "min": 0,
+          "max": 0.6,
+          "step": 0.02,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Share of SKUs moved."
+        },
+        {
+          "name": "forward_pick_slots_added",
+          "label": "Forward-pick slots added",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 500,
+          "step": 10,
+          "default": 0,
+          "options": [],
+          "unit": "slots",
+          "description": "Net forward-pick positions."
+        },
+        {
+          "name": "replenishment_policy",
+          "label": "Replenishment policy",
+          "input_type": "selectbox",
+          "default": "standard",
+          "options": [
+            "standard",
+            "windowed",
+            "dedicated_path"
+          ],
+          "unit": "",
+          "description": "Replenishment operating policy."
+        },
+        {
+          "name": "isolation_enabled",
+          "label": "Enable replenishment isolation",
+          "input_type": "toggle",
+          "default": false,
+          "options": [],
+          "unit": "",
+          "description": "Separate replenishment and picking routes."
+        }
+      ],
+      "primary_impacts": {
+        "forward_pick_effectiveness_index": 0.18,
+        "travel_distance_index": -0.11
+      },
+      "secondary_impacts": {
+        "replenishment_interference_index": 0.1,
+        "congestion_index": 0.05
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "forward_pick_effectiveness_index",
+        "travel_distance_index",
+        "replenishment_interference_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "add_carton_flow_pick_faces",
+      "name": "Add carton-flow pick faces",
+      "category": "Forward-pick / fast-pick",
+      "subcategory": "forward_pick",
+      "description": "Operational layout intervention: add carton-flow pick faces.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "forward_pick_effectiveness_index": 0.18,
+        "travel_distance_index": -0.11
+      },
+      "secondary_impacts": {
+        "replenishment_interference_index": 0.1,
+        "congestion_index": 0.05
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "forward_pick_effectiveness_index",
+        "travel_distance_index",
+        "replenishment_interference_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "increase_forward_pick_slot_depth",
+      "name": "Increase forward-pick slot depth",
+      "category": "Forward-pick / fast-pick",
+      "subcategory": "forward_pick",
+      "description": "Operational layout intervention: increase forward-pick slot depth.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "sku_share_moved_to_forward_pick",
+          "label": "SKU share moved to forward-pick",
+          "input_type": "slider",
+          "min": 0,
+          "max": 0.6,
+          "step": 0.02,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Share of SKUs moved."
+        },
+        {
+          "name": "forward_pick_slots_added",
+          "label": "Forward-pick slots added",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 500,
+          "step": 10,
+          "default": 0,
+          "options": [],
+          "unit": "slots",
+          "description": "Net forward-pick positions."
+        },
+        {
+          "name": "replenishment_policy",
+          "label": "Replenishment policy",
+          "input_type": "selectbox",
+          "default": "standard",
+          "options": [
+            "standard",
+            "windowed",
+            "dedicated_path"
+          ],
+          "unit": "",
+          "description": "Replenishment operating policy."
+        },
+        {
+          "name": "isolation_enabled",
+          "label": "Enable replenishment isolation",
+          "input_type": "toggle",
+          "default": false,
+          "options": [],
+          "unit": "",
+          "description": "Separate replenishment and picking routes."
+        }
+      ],
+      "primary_impacts": {
+        "forward_pick_effectiveness_index": 0.18,
+        "travel_distance_index": -0.11
+      },
+      "secondary_impacts": {
+        "replenishment_interference_index": 0.1,
+        "congestion_index": 0.05
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "forward_pick_effectiveness_index",
+        "travel_distance_index",
+        "replenishment_interference_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "rebalance_forward_pick_sku_mix",
+      "name": "Rebalance forward-pick SKU mix",
+      "category": "Forward-pick / fast-pick",
+      "subcategory": "forward_pick",
+      "description": "Operational layout intervention: rebalance forward-pick sku mix.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "sku_share_moved_to_forward_pick",
+          "label": "SKU share moved to forward-pick",
+          "input_type": "slider",
+          "min": 0,
+          "max": 0.6,
+          "step": 0.02,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Share of SKUs moved."
+        },
+        {
+          "name": "forward_pick_slots_added",
+          "label": "Forward-pick slots added",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 500,
+          "step": 10,
+          "default": 0,
+          "options": [],
+          "unit": "slots",
+          "description": "Net forward-pick positions."
+        },
+        {
+          "name": "replenishment_policy",
+          "label": "Replenishment policy",
+          "input_type": "selectbox",
+          "default": "standard",
+          "options": [
+            "standard",
+            "windowed",
+            "dedicated_path"
+          ],
+          "unit": "",
+          "description": "Replenishment operating policy."
+        },
+        {
+          "name": "isolation_enabled",
+          "label": "Enable replenishment isolation",
+          "input_type": "toggle",
+          "default": false,
+          "options": [],
+          "unit": "",
+          "description": "Separate replenishment and picking routes."
+        }
+      ],
+      "primary_impacts": {
+        "forward_pick_effectiveness_index": 0.18,
+        "travel_distance_index": -0.11
+      },
+      "secondary_impacts": {
+        "replenishment_interference_index": 0.1,
+        "congestion_index": 0.05
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "medium",
+      "risk_level": "high",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "forward_pick_effectiveness_index",
+        "travel_distance_index",
+        "replenishment_interference_index",
+        "congestion_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "separate_inbound_outbound_staging",
+      "name": "Separate inbound and outbound staging",
+      "category": "Dock / staging",
+      "subcategory": "dock",
+      "description": "Operational layout intervention: separate inbound and outbound staging.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "dock_adjacency_index": 0.15,
+        "staging_efficiency_index": 0.12
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "dock_adjacency_index",
+        "staging_efficiency_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "add_staging_lanes",
+      "name": "Add dedicated staging lanes",
+      "category": "Dock / staging",
+      "subcategory": "dock",
+      "description": "Operational layout intervention: add dedicated staging lanes.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "lanes_added",
+          "label": "Count added",
+          "input_type": "number_input",
+          "min": 0,
+          "max": 12,
+          "step": 1,
+          "default": 0,
+          "options": [],
+          "unit": "count",
+          "description": "Exact quantity to implement."
+        },
+        {
+          "name": "affected_zone",
+          "label": "Affected zone",
+          "input_type": "selectbox",
+          "default": "case_pick",
+          "options": [
+            "case_pick",
+            "full_pallet",
+            "dispatch_near",
+            "mixed"
+          ],
+          "unit": "",
+          "description": "Main layout zone affected."
+        },
+        {
+          "name": "placement_quality",
+          "label": "Placement quality",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.5,
+          "options": [],
+          "unit": "score",
+          "description": "How well this move is positioned in practice."
+        }
+      ],
+      "primary_impacts": {
+        "dock_adjacency_index": 0.15,
+        "staging_efficiency_index": 0.12
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "dock_adjacency_index",
+        "staging_efficiency_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "improve_staging_to_door_mapping",
+      "name": "Improve staging-to-door mapping",
+      "category": "Dock / staging",
+      "subcategory": "dock",
+      "description": "Operational layout intervention: improve staging-to-door mapping.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "dock_adjacency_index": 0.15,
+        "staging_efficiency_index": 0.12
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "dock_adjacency_index",
+        "staging_efficiency_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "improve_door_assignment_by_family",
+      "name": "Improve door assignment by product family",
+      "category": "Dock / staging",
+      "subcategory": "dock",
+      "description": "Operational layout intervention: improve door assignment by product family.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "dock_adjacency_index": 0.15,
+        "staging_efficiency_index": 0.12
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "dock_adjacency_index",
+        "staging_efficiency_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "reduce_dispatch_side_walking",
+      "name": "Reduce dispatch-side walking distance",
+      "category": "Dock / staging",
+      "subcategory": "dock",
+      "description": "Operational layout intervention: reduce dispatch-side walking distance.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "dock_adjacency_index": 0.15,
+        "staging_efficiency_index": 0.12
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "dock_adjacency_index",
+        "staging_efficiency_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "improve_consolidation_zone_placement",
+      "name": "Improve consolidation zone placement",
+      "category": "Dock / staging",
+      "subcategory": "dock",
+      "description": "Operational layout intervention: improve consolidation zone placement.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "dock_adjacency_index": 0.15,
+        "staging_efficiency_index": 0.12
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "dock_adjacency_index",
+        "staging_efficiency_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "move_returns_away_outbound",
+      "name": "Move returns area away from outbound flow",
+      "category": "Dock / staging",
+      "subcategory": "dock",
+      "description": "Operational layout intervention: move returns area away from outbound flow.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "dock_adjacency_index": 0.15,
+        "staging_efficiency_index": 0.12
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "dock_adjacency_index",
+        "staging_efficiency_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "create_dedicated_cross_dock_lane",
+      "name": "Create dedicated cross-dock lane",
+      "category": "Dock / staging",
+      "subcategory": "dock",
+      "description": "Operational layout intervention: create dedicated cross-dock lane.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "dock_adjacency_index": 0.15,
+        "staging_efficiency_index": 0.12
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "dock_adjacency_index",
+        "staging_efficiency_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "rebalance_dock_adjacency_by_temp",
+      "name": "Rebalance dock adjacency by temperature/family",
+      "category": "Dock / staging",
+      "subcategory": "dock",
+      "description": "Operational layout intervention: rebalance dock adjacency by temperature/family.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "dock_adjacency_index": 0.15,
+        "staging_efficiency_index": 0.12
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.06
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "high",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "dock_adjacency_index",
+        "staging_efficiency_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "reduce_end_of_aisle_clutter",
+      "name": "Reduce end-of-aisle clutter",
+      "category": "Congestion / interference",
+      "subcategory": "congestion",
+      "description": "Operational layout intervention: reduce end-of-aisle clutter.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "congestion_index": -0.15,
+        "flow_separation_index": 0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.03
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "congestion_index",
+        "flow_separation_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "reduce_replenishment_overlap_with_picking",
+      "name": "Reduce replenishment overlap with picking",
+      "category": "Congestion / interference",
+      "subcategory": "congestion",
+      "description": "Operational layout intervention: reduce replenishment overlap with picking.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "congestion_index": -0.15,
+        "flow_separation_index": 0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.03
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "congestion_index",
+        "flow_separation_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "spread_hotspot_traffic",
+      "name": "Spread hotspot traffic by routing changes",
+      "category": "Congestion / interference",
+      "subcategory": "congestion",
+      "description": "Operational layout intervention: spread hotspot traffic by routing changes.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "congestion_index": -0.15,
+        "flow_separation_index": 0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.03
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "congestion_index",
+        "flow_separation_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "isolate_replenishment_path",
+      "name": "Isolate replenishment path from pick flow",
+      "category": "Congestion / interference",
+      "subcategory": "congestion",
+      "description": "Operational layout intervention: isolate replenishment path from pick flow.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "congestion_index": -0.15,
+        "flow_separation_index": 0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.03
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "congestion_index",
+        "flow_separation_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "separate_pedestrian_and_mhe",
+      "name": "Separate pedestrian and MHE movements",
+      "category": "Congestion / interference",
+      "subcategory": "safety",
+      "description": "Operational layout intervention: separate pedestrian and mhe movements.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "congestion_index": -0.15,
+        "flow_separation_index": 0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.03
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "congestion_index",
+        "flow_separation_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "reduce_queue_spillback_from_staging",
+      "name": "Reduce queue spillback from staging",
+      "category": "Congestion / interference",
+      "subcategory": "congestion",
+      "description": "Operational layout intervention: reduce queue spillback from staging.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "congestion_index": -0.15,
+        "flow_separation_index": 0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.03
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "congestion_index",
+        "flow_separation_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "split_high_load_zones",
+      "name": "Split high-load zones",
+      "category": "Congestion / interference",
+      "subcategory": "congestion",
+      "description": "Operational layout intervention: split high-load zones.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "congestion_index": -0.15,
+        "flow_separation_index": 0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.03
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "congestion_index",
+        "flow_separation_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "reduce_shared_dispatch_facing_traffic",
+      "name": "Reduce shared traffic in dispatch-facing area",
+      "category": "Congestion / interference",
+      "subcategory": "congestion",
+      "description": "Operational layout intervention: reduce shared traffic in dispatch-facing area.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "congestion_index": -0.15,
+        "flow_separation_index": 0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.03
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "congestion_index",
+        "flow_separation_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "redesign_hotspot_near_consolidation",
+      "name": "Redesign hotspot near consolidation node",
+      "category": "Congestion / interference",
+      "subcategory": "congestion",
+      "description": "Operational layout intervention: redesign hotspot near consolidation node.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "congestion_index": -0.15,
+        "flow_separation_index": 0.08
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.03
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "high",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "congestion_index",
+        "flow_separation_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "separate_case_and_pallet_flows",
+      "name": "Separate case-pick and pallet-pick flows",
+      "category": "Flow segregation",
+      "subcategory": "flow",
+      "description": "Operational layout intervention: separate case-pick and pallet-pick flows.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "flow_separation_index": 0.16,
+        "route_complexity_index": -0.07,
+        "service_risk_index": -0.06
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "flow_separation_index",
+        "route_complexity_index",
+        "service_risk_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "separate_dry_temp_sensitive_flow",
+      "name": "Separate dry and temperature-sensitive flow",
+      "category": "Flow segregation",
+      "subcategory": "flow",
+      "description": "Operational layout intervention: separate dry and temperature-sensitive flow.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "flow_separation_index": 0.16,
+        "route_complexity_index": -0.07,
+        "service_risk_index": -0.06
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "flow_separation_index",
+        "route_complexity_index",
+        "service_risk_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "reduce_crossing_replenishment_picking",
+      "name": "Reduce crossing between replenishment and picking",
+      "category": "Flow segregation",
+      "subcategory": "flow",
+      "description": "Operational layout intervention: reduce crossing between replenishment and picking.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "flow_separation_index": 0.16,
+        "route_complexity_index": -0.07,
+        "service_risk_index": -0.06
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "flow_separation_index",
+        "route_complexity_index",
+        "service_risk_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "create_directional_circulation_loop",
+      "name": "Create directional circulation loop",
+      "category": "Flow segregation",
+      "subcategory": "flow",
+      "description": "Operational layout intervention: create directional circulation loop.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "flow_separation_index": 0.16,
+        "route_complexity_index": -0.07,
+        "service_risk_index": -0.06
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "flow_separation_index",
+        "route_complexity_index",
+        "service_risk_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    },
+    {
+      "lever_id": "assign_dedicated_zone_ownership_high_traffic",
+      "name": "Assign zone ownership for high-traffic picks",
+      "category": "Flow segregation",
+      "subcategory": "flow",
+      "description": "Operational layout intervention: assign zone ownership for high-traffic picks.",
+      "business_question": "How can layout changes improve flow without creating hidden bottlenecks?",
+      "operational_mechanism": "This move changes physical flow paths, SKU-location patterns, and adjacency behavior before KPI outcomes are computed.",
+      "input_parameters": [
+        {
+          "name": "change_intensity",
+          "label": "Change intensity",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "score",
+          "description": "Extent of implementation."
+        },
+        {
+          "name": "affected_share",
+          "label": "Affected share",
+          "input_type": "slider",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.0,
+          "options": [],
+          "unit": "share",
+          "description": "Area/SKU share affected."
+        }
+      ],
+      "primary_impacts": {
+        "flow_separation_index": 0.16,
+        "route_complexity_index": -0.07,
+        "service_risk_index": -0.06
+      },
+      "secondary_impacts": {
+        "usable_space_index": -0.04
+      },
+      "dependencies": {},
+      "conflicts": {},
+      "implementation_effort": "medium",
+      "confidence_level": "medium",
+      "risk_level": "medium",
+      "explanation_template": "This move shifts flow and space mechanics, creating first-order and second-order effects.",
+      "recommendation_template": "Validate aisle safety, replenishment interference, and hotspot behavior before full rollout.",
+      "affected_intermediate_variables": [
+        "flow_separation_index",
+        "route_complexity_index",
+        "service_risk_index",
+        "usable_space_index"
+      ],
+      "affected_kpis": [
+        "estimated_travel_distance_per_pick",
+        "congestion_risk_score",
+        "replenishment_burden_index",
+        "scenario_overall_score"
+      ],
+      "watchouts": [
+        "congestion drag in hot zones",
+        "replenishment interference",
+        "space tradeoff"
+      ],
+      "typical_use_cases": [
+        "high travel complaints",
+        "order-profile shift",
+        "service-level pressure"
+      ],
+      "avoid_when": [
+        "poor data confidence",
+        "insufficient change capacity"
+      ]
+    }
+  ]
+}
