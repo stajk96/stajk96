@@ -1,0 +1,11 @@
+aisle,row,bay,level,bin,zone,staging_area,material,pick_frequency,movement_cnt,temperature_class,area_type
+A1,1,6,1,SAP1,Z2,ST2,MAT1,79,301,dry,reserve
+A2,2,7,1,SAP2,Z2,ST2,MAT2,78,302,dry,reserve
+A3,3,8,1,SAP3,Z2,ST2,MAT3,77,303,dry,reserve
+A4,4,9,1,SAP4,Z2,ST2,MAT4,76,304,dry,reserve
+A5,5,10,1,SAP5,Z2,ST2,MAT5,75,305,dry,reserve
+A6,6,11,1,SAP6,Z2,ST2,MAT6,74,306,dry,reserve
+A7,7,12,1,SAP7,Z2,ST2,MAT7,73,307,dry,reserve
+A8,8,13,1,SAP8,Z2,ST2,MAT8,72,308,dry,reserve
+A9,9,14,1,SAP9,Z2,ST2,MAT9,71,309,dry,reserve
+A10,10,15,1,SAP10,Z2,ST2,MAT10,70,310,dry,reserve
