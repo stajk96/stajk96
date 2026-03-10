@@ -1,0 +1,16 @@
+kpi_caps:
+  low: 50
+  high: 150
+weights:
+  travel: 0.3
+  congestion: 0.25
+  slotting: 0.2
+  dock_staging: 0.15
+  flexibility: 0.1
+archetype_adjustments:
+  Dry FMCG pallet warehouse: {travel_bias: 1.0}
+  Dry pallet + case-pick warehouse: {travel_bias: 1.05}
+  Forward-pick / fast-pick warehouse: {travel_bias: 1.1}
+  Multi-temperature FMCG warehouse: {risk_bias: 1.1}
+  Partially automated warehouse: {congestion_bias: 0.95}
+  Large automated dry-goods DC archetype: {travel_bias: 0.9}
