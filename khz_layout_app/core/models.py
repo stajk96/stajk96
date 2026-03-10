@@ -238,6 +238,49 @@ class ImportMappingProfile(BaseModel):
     units: dict[str, str] = Field(default_factory=dict)
 
 
+class ImportedMetricObservation(BaseModel):
+    source_sheet: str
+    source_row: int
+    category: str = ""
+    metric_code: str = ""
+    metric_name: str = ""
+    unit: str = ""
+    threshold_low: float | None = None
+    threshold_high: float | None = None
+    observed_value: float | None = None
+    score: float | None = None
+    severity: str = ""
+    required_flag: bool | None = None
+    evidence_source: str = ""
+    comments: str = ""
+    next_step: str = ""
+    mapping_confidence: float = 0.0
+    mapped_variable: str | None = None
+
+
+class ImportedSheetParseResult(BaseModel):
+    sheet_name: str
+    recognized: bool
+    header_row: int | None = None
+    header_confidence: float = 0.0
+    normalized_columns: list[str] = Field(default_factory=list)
+    warnings: list[str] = Field(default_factory=list)
+    observations: list[ImportedMetricObservation] = Field(default_factory=list)
+
+
+class KHZTemplateParseResult(BaseModel):
+    workbook_mode: str
+    detected: bool
+    recognized_sheets: list[str] = Field(default_factory=list)
+    unrecognized_sheets: list[str] = Field(default_factory=list)
+    sheet_results: list[ImportedSheetParseResult] = Field(default_factory=list)
+    mapped_intermediate: dict[str, float] = Field(default_factory=dict)
+    mapped_baseline_fields: dict[str, float] = Field(default_factory=dict)
+    unmapped_observations: list[ImportedMetricObservation] = Field(default_factory=list)
+    validation_warnings: list[str] = Field(default_factory=list)
+    confidence_score: float = 0.0
+
+
 class ValidationIssue(BaseModel):
     field: str
     severity: str

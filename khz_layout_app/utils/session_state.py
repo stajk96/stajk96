@@ -13,6 +13,7 @@ def init_state():
         "change_log": [],
         "import_df": None,
         "import_mapping": {},
+        "khz_parse_result": None,
     }
     for k, v in defaults.items():
         if k not in st.session_state:

@@ -17,6 +17,28 @@ The lever system is now a professional decision engine:
 4. Explanation and recommendation engines (`core/explanations.py`, `core/recommendations.py`)
 5. Streamlit pages and reusable components (`pages/`, `components/`)
 
+## KHZ structured workbook import (new)
+The Import Wizard now supports a first-class **KHZ structured site template** path, separate from generic flat data imports.
+
+### Supported structured sheet types
+- `01_SITE_PROFILE` (recognized)
+- `02_PICKING` (recognized)
+- `03_LAYOUT` (**semantically parsed with header detection**)
+- `04_DOCK` (recognized)
+- `05_SCENARIOS` (recognized)
+
+### How KHZ mode works
+1. Workbook type selection in Import Wizard.
+2. Auto-detect helper checks known KHZ sheet names.
+3. Header detection scans first 20–30 rows and scores likely header row using semantic tokens.
+4. Semantic column normalization maps synonym columns (e.g., `Observed value`, `Current value`) to canonical names.
+5. Parsed observations are mapped conservatively to canonical intermediate variables.
+6. Unmapped metrics remain visible for manual review (never silently dropped).
+
+### KHZ mode vs Generic mode
+- **KHZ mode**: template-aware parser for structured assessment sheets and semantic fields.
+- **Generic/SAP/WMS mode**: raw tabular mapper for transactional exports.
+
 ## Lever catalog
 The new catalog includes **53 realistic layout interventions** across:
 - Aisle / geometry
