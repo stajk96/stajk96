@@ -1,0 +1,52 @@
+known_sheet_tokens:
+  - 01_site_profile
+  - 02_picking
+  - 03_layout
+  - 04_dock
+  - 05_scenarios
+
+layout_expected_header_tokens:
+  - category
+  - metric
+  - observed
+  - score
+  - severity
+  - required
+  - evidence
+  - next
+  - comments
+  - unit
+  - threshold
+
+column_synonyms:
+  category: [category, section, domain]
+  metric_code: [metric_code, code, metric id, metric]
+  metric_name: [metric_name, metric description, metric, description, kpi]
+  unit: [unit, uom]
+  threshold_low: [threshold_low, low threshold, min threshold, low]
+  threshold_high: [threshold_high, high threshold, max threshold, high]
+  observed_value: [observed_value, observed, current value, current, actual]
+  score: [score, rating, assessment_score]
+  severity: [severity, priority, risk level]
+  required_flag: [required, required_flag, mandatory, "required?"]
+  evidence_source: [evidence, evidence_source, source]
+  comments: [comments, root cause, root cause comments, root cause/comments]
+  next_step: [next step, action, recommended action, follow up]
+
+sheet_name_map:
+  "03_layout": layout
+  "02_picking": picking
+  "01_site_profile": site_profile
+  "04_dock": dock
+  "05_scenarios": scenarios
+
+metric_mapping_rules:
+  travel_distance_index: [travel burden, travel overlap, walking distance, distance per pick]
+  travel_time_index: [travel time, pick path time, route time]
+  pick_density_index: [pick density, picks per aisle, picks per location]
+  slotting_quality_index: [slotting, abc compliance, affinity]
+  congestion_index: [congestion, waves per aisle, simultaneous picks]
+  hotspot_concentration_index: [hotspot, hotspot concentration, queue]
+  replenishment_interference_index: [replenishment during pick, replenishment overlap]
+  dock_adjacency_index: [dock adjacency, dock travel]
+  staging_efficiency_index: [staging efficiency, staging to door]
