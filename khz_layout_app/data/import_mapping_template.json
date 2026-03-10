@@ -1,0 +1,17 @@
+{
+  "name": "default",
+  "mappings": {
+    "aisle": "aisle",
+    "row": "row",
+    "bay": "bay",
+    "level": "level",
+    "bin/location": "bin",
+    "zone": "zone",
+    "dock/staging area": "staging_area",
+    "sku/material": "sku",
+    "pick frequency": "pick_frequency",
+    "movement count": "movement_count",
+    "temperature class": "temperature_class",
+    "area type": "area_type"
+  }
+}

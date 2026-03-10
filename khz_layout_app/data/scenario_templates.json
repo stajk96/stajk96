@@ -1,0 +1,16 @@
+{
+  "conservative": {
+    "improve_abc_slotting": 0.3,
+    "reduce_end_aisle_clutter": 0.2
+  },
+  "moderate": {
+    "improve_abc_slotting": 0.5,
+    "add_cross_aisle": 2,
+    "reduce_replenishment_interference": 0.4
+  },
+  "aggressive": {
+    "reslot_top_50_fast_movers": 45,
+    "expand_forward_pick_footprint": 0.7,
+    "add_staging_lanes": 8
+  }
+}
