@@ -49,3 +49,23 @@ Use **Data Import Wizard** page to upload CSV/XLSX, map columns to canonical sch
 ## Notes
 - No Excel-core logic; all imports are mapped into canonical schema first.
 - Rule-based transparent simulator, not black-box AI.
+
+
+## Troubleshooting: `invalid decimal literal`
+If you see an error like `SyntaxError: invalid decimal literal` and the line contains text such as `git apply`, `diff --git`, or `new file mode 100644`, you are running a **patch/diff** as Python code.
+
+Use one of these correct launch methods instead:
+
+```bash
+cd khz_layout_app
+python run_streamlit.py
+```
+
+or
+
+```bash
+cd khz_layout_app
+streamlit run app.py
+```
+
+In Spyder, open and run `run_streamlit.py` (not pasted diff content).
